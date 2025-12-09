@@ -5,6 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --loader ts-node/esm LinkedList.ts",
+    "train": "npx tsc TrainSeats.ts --module nodenext --target esnext && node TrainSeats.js",
+    "train-ll": "npx tsc TrainSeatsLinkedList.ts --module nodenext --target esnext && node TrainSeatsLinkedList.js",
     "build": "tsc"
   },
   "keywords": [],

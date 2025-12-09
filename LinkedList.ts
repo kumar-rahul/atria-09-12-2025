@@ -20,6 +20,9 @@ class LinkedList<T> {
   }
 
   // Add a node at the end of the list
+  // Adds a new node at the end of the list. If the list is empty, the new node becomes the head.
+  // Otherwise, it traverses to the last node (where next is null) and attaches the new node there.
+  // Increments the size counter. Time complexity: O(n) where n is the number of nodes.
   append(value: T): void {
     const newNode = new ListNode(value);
 
@@ -36,6 +39,9 @@ class LinkedList<T> {
   }
 
   // Add a node at the beginning of the list
+  // Adds a new node at the beginning of the list. Creates a new node, sets its next pointer
+  // to the current head, then updates the head to be the new node.
+  // This operation is O(1) as it doesn't require traversal.
   prepend(value: T): void {
     const newNode = new ListNode(value);
     newNode.next = this.head;
@@ -44,6 +50,10 @@ class LinkedList<T> {
   }
 
   // Insert a node at a specific position
+  // Inserts a node at a specific position. Returns false if the index is invalid.
+  // If inserting at position 0, it calls prepend(). Otherwise, it traverses to the position
+  // before the insertion point, creates a new node, and updates the pointers to insert it
+  // between two existing nodes. Time complexity: O(n).
   insertAt(value: T, index: number): boolean {
     if (index < 0 || index > this.size) {
       return false;
@@ -72,6 +82,10 @@ class LinkedList<T> {
   }
 
   // Remove a node at a specific position
+  // Removes and returns the value of the node at the specified index. Returns null if the
+  // index is invalid. For index 0, it updates the head to the next node. For other positions,
+  // it traverses to the node before the target, updates pointers to skip the target node,
+  // and returns its value. Time complexity: O(n).
   removeAt(index: number): T | null {
     if (index < 0 || index >= this.size || !this.head) {
       return null;
@@ -100,6 +114,9 @@ class LinkedList<T> {
   }
 
   // Get node value at a specific position
+  // Retrieves the value at a specific position without removing it. Returns null if the
+  // index is invalid or list is empty. Traverses from the head to the specified index
+  // and returns the value. Time complexity: O(n).
   getAt(index: number): T | null {
     if (index < 0 || index >= this.size || !this.head) {
       return null;
@@ -117,6 +134,10 @@ class LinkedList<T> {
   }
 
   // Traverse the linked list and execute a callback on each node
+  // Iterates through every node in the list and executes a callback function on each one.
+  // The callback receives the node's value and its index. This is useful for performing
+  // operations on all nodes, like printing, processing, or transforming values.
+  // Time complexity: O(n).
   traverse(callback: (value: T, index: number) => void): void {
     if (!this.head) {
       return;
@@ -133,6 +154,9 @@ class LinkedList<T> {
   }
 
   // Print the linked list
+  // Displays the entire linked list in a readable format. Traverses through all nodes,
+  // collects their values into an array, then prints them joined by " -> ".
+  // Shows "List is empty" if there are no nodes. Time complexity: O(n).
   print(): void {
     if (!this.head) {
       console.log("List is empty");
@@ -151,11 +175,15 @@ class LinkedList<T> {
   }
 
   // Get the size of the list
+  // Returns the current number of nodes in the list. This is O(1) since the size is
+  // tracked with each insertion/deletion rather than counting nodes each time.
   getSize(): number {
     return this.size;
   }
 
   // Clear the list
+  // Removes all nodes from the list by setting the head to null and resetting the size to 0.
+  // This effectively deallocates the entire list. Time complexity: O(1).
   clear(): void {
     this.head = null;
     this.size = 0;
